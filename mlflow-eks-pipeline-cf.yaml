@@ -1,7 +1,7 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 
-Description: CFN Template to deploy CodePipeline to build Docker Image and push to ECR
+Description: CFN Template to deploy CodePipeline to build Docker Image and push to ECR.
 
 Parameters:
 
