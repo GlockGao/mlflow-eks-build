@@ -90,7 +90,7 @@ Resources:
             build:
               commands:
                 - echo Build started on `date`
-                - aws s3 cp ${ModelUri} ./model --recursive
+                - aws s3 cp ${MODEL_URI} ./model --recursive
                 - docker build -t "${REPOSITORY_URI}:latest" .
                 - docker tag "${REPOSITORY_URI}:latest" "${REPOSITORY_URI}:${TAG}"
             post_build:
@@ -125,7 +125,7 @@ Resources:
       Stages:
         - Name: Source
           Actions:
-            - Name: App
+            - Name: mlflow-eks-build
               ActionTypeId:
                 Category: Source
                 Owner: ThirdParty
@@ -137,7 +137,7 @@ Resources:
                 Branch: !Ref GitBranch
                 OAuthToken: !Ref GitHubToken
               OutputArtifacts:
-                - Name: App
+                - Name: mlflow-eks-build
               RunOrder: 1
         - Name: Build
           Actions:
@@ -150,7 +150,7 @@ Resources:
               Configuration:
                 ProjectName: !Ref CodeBuildProject
               InputArtifacts:
-                - Name: App
+                - Name: mlflow-eks-build
               OutputArtifacts:
                 - Name: BuildOutput
               RunOrder: 1
