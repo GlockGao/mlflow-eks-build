@@ -15,7 +15,7 @@ WORKDIR /ai
 
 COPY /model/ /ai/ai_service/models/boston_housing_model/
 
-CMD mlflow serve \
+CMD mlflow models serve \
     --model-uri /ai/ai_service/models/boston_housing_model \
     --port 8080 \
     --host 0.0.0.0 \
